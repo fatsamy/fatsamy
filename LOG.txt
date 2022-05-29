@@ -1,0 +1,27 @@
+2022-04-08
+ - work_class.py um def start_warmup erweiter.
+ - def last_five zeigt jetzt auch das Datum vom letztem Training
+ - Mehrere "_ = input()" Stopps am Anfang eingebaut damit nicht zuviel 
+   auf einmal ausgedruckt wird und man gezwungen wird nach oben zu
+   scrollen.
+ 
+
+ 2022-04-09
+ - einige Prints verbessert.
+ - Das Programm zum laufen gebracht
+ - Alle WorkoutTypes getestet.
+ - ZipBackup hinzugefügt
+ 
+2022-04-11
+ - work_class erweitert
+    - Cooldown, Warmup, temp_fasted, puls, duration hinzugefügt.
+    - bei dem Endurancetraining fehtl das noch
+    - Evlt hier eine erbende Klasse eröffnen?
+
+  - Diary2.0 sollt noch laufen. Test mit echobike_middle waren erfolgreich
+
+2022-04-22
+  - strenghtworkouts werden komplett als Objekt in der WorkoutClass aufgenommen
+  - Endurance Low und Middle auch
+  - Beide funktionieren
+  - 
