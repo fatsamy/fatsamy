@@ -1,8 +1,3 @@
-# class decorator -- @dataclass
-# mittem im Umschreiben auf volle Daten in Klassen.
-# middle ist fertig und läuft!!!!
-# die anderen sind noch im alten Format kopiert. Könnten funktionieren
-# sollten aber umgeschrieben werden :)
 import os,zipfile
 from utils.sql_quere import max_volume
 
@@ -31,7 +26,7 @@ print ('_____ Hier sind die möglichen Trainingseinheiten ____')
 lst_exercise = (1,3,2,5,2)
 
 for i in lst_exercise:
-    print (Name der Übung)
+    print ('Name der Übung')
 
 question = input('Möchtest du dieses Training starten? j/n')
  
