@@ -4,7 +4,7 @@
 # die anderen sind noch im alten Format kopiert. Könnten funktionieren
 # sollten aber umgeschrieben werden :)
 import os,zipfile
-from utils.sql_quere import max_volume
+from utils.sql_quere import max_volume, choose_db
 
 
 from utils.ex_class import * #exerciseload,find_exercise_id,take_set_list
@@ -12,7 +12,9 @@ from utils.methods import *
 from utils.work_class import *
 from utils.backupzip import zip
 
-db_path = 'Diary_db.sqlite3' ### ----->>> HIER DATENBANKPFAD EINGEBEN
+ex_db_path = 'Diary_db.sqlite3'
+db_path = choose_db()
+#db_path = 'Diary_db.sqlite3' ### ----->>> HIER DATENBANKPFAD EINGEBEN
 #db_path = 'Diary_dbcopy.sqlite3' ### ----->>> HIER DATENBANKPFAD EINGEBEN
 
 # ************ Datensicherung ************* 
@@ -30,13 +32,13 @@ os.chdir('../')
 # ********** TRAININGSAUSWAHL **********
 
 print ('\n =====>  Daten wurden aus {} geladen. <======'.format(db_path))
-lst_all = exerciseload(db_path)
+lst_all = exerciseload(ex_db_path)
 print ('\nDie letzten 5 Trainings waren.....')
 _ = input()
 last_five(db_path) #Anzeigen der letzten 5 Trainingseinheiten
 _ = input()
 print ('_____ Hier sind die möglichen Trainingseinheiten ____')
-workout_pool = all_possible_workouts(db_path)
+workout_pool = all_possible_workouts(ex_db_path)
 question = 'n'
 while question == 'n':   
     trainings_auswahl = ''  

@@ -25,3 +25,8 @@
   - Endurance Low und Middle auch
   - Beide funktionieren
   - 
+2022-05-30
+  - Diary_new_ex.py hinzugefügt für neue Trainingseinheiten
+  - Abfrage der DB im beiden Programmen hinzugefügt
+  - ex_db_path erstellt für Übungen und WorkoutClass
+  

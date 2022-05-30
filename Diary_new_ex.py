@@ -1,5 +1,5 @@
 import os,zipfile
-from utils.sql_quere import max_volume
+from utils.sql_quere import max_volume, choose_db
 
 
 from utils.ex_class import * #exerciseload,find_exercise_id,take_set_list
@@ -7,28 +7,34 @@ from utils.methods import *
 from utils.work_class import *
 from utils.backupzip import zip
 
-db_path = 'Irina_Diary_db.sqlite3' ### ----->>> HIER DATENBANKPFAD EINGEBEN
-#db_path = 'Diary_dbcopy.sqlite3' ### ----->>> HIER DATENBANKPFAD EINGEBEN
 ex_db_path = 'Diary_db.sqlite3' # DB für Übungen
-trainings_auswahl = 'full_body_main_chest'
-# ************ Datensicherung ************* 
+db_path = choose_db()
+
+#lst_exercise = (45,31,40,16,30,5) # --------Uebungen Wählen ------
+#lst_exercise = (46,30,14,32,20,33) # --------Uebungen Wählen ------
+lst_exercise = (13,47,3,26,4,27) # --------Uebungen Wählen ------
+
 
 date,start_time,lt_start = get_date_and_time() 
 
-
+last_id = 0
 # ********** TRAININGSAUSWAHL **********
 
 print ('\n =====>  Daten wurden aus {} geladen. <======'.format(db_path))
 lst_all = exerciseload(ex_db_path)
-print ('\nDie letzten 5 Trainings waren.....')
-_ = input()
+
 print ('_____ Hier sind die möglichen Trainingseinheiten ____')
-lst_exercise = (1,3,2,5,2)
+workout_pool = all_possible_workouts(ex_db_path)
+question = 'n'
+while question == 'n':   
+    trainings_auswahl = ''  
+    while trainings_auswahl not in workout_pool:
+        trainings_auswahl =  input('\nWelches Training steht heute an??')
+    for i in lst_exercise:
+        print (lst_all[i-1])
+    question = input('Möchtest du dieses Training starten? j/n')
 
-for i in lst_exercise:
-    print ('Name der Übung')
-
-question = input('Möchtest du dieses Training starten? j/n')
+    
  
 # ****** ERSTELLUNG DER HAUPTDATEN *******
 
@@ -38,13 +44,13 @@ CurrentWorkout = Workout(type=trainings_auswahl,
             current_date=date, 
             time_start=start_time,
             )
-CurrentWorkout.get_current_id(db_path)
+#CurrentWorkout.get_current_id(db_path)
+CurrentWorkout.id = 1
 CurrentWorkout.take_temp_fasted()
 CurrentWorkout.start_warmup()
 
 
 for one_exercise in lst_exercise: #Name und Beschreibung anzeigen
-    best_workout_id = 0
     print('')
     cur_ex = (lst_all[one_exercise-1])
     print (cur_ex)
@@ -54,14 +60,6 @@ for one_exercise in lst_exercise: #Name und Beschreibung anzeigen
     for one in last_sets:
         #print (one)
         show_set(one)
-    print('****** Beim BESTEM Training *******')
-    best_workout_id = max_volume(one_exercise,db_path)
-    best_sets = (ShowLastSets(best_workout_id,one_exercise,db_path))
-    for best_set in best_sets:
-        #print (best_set)
-        show_set(best_set)
-    #heaviest_set = show_heaviest_set(one_exercise,db_path)
-    #print (heaviest_set)
     cur_ex.take_set_lst()
     
 print('\n\n---->>> ALLE SETS ERLEDIGT <<<----')    
