@@ -25,9 +25,9 @@ for i in lst:
     if '.' in i:
         zip(i,'DB_Backup2/{}.zip'.format(date))
 
-os.chdir('DB_Backup2')
-print (os.listdir())
-os.chdir('../')
+#os.chdir('DB_Backup2')
+#print (os.listdir())
+#os.chdir('../')
 
 # ********** TRAININGSAUSWAHL **********
 
@@ -152,13 +152,13 @@ else:
         cur_ex = (lst_all[one_exercise-1])
         print (cur_ex)
         print('')
-        print('****** Beim letztem Training: *****')
+        print('****** Beim LETZTEM Training: *****')
         last_sets = (ShowLastSets(last_id,one_exercise,db_path))
         for one in last_sets:
             #print (one)
             show_set(one)
-        print('****** Beim BESTEM Training *******')
-        best_workout_id = max_volume(one_exercise,db_path)
+        print('\n****** Beim BESTEM Training *******')
+        best_workout_id = max_volume(one_exercise,db_path,lst_all)
         best_sets = (ShowLastSets(best_workout_id,one_exercise,db_path))
         for best_set in best_sets:
             #print (best_set)

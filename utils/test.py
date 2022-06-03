@@ -1,1 +1,3 @@
-print (182+320+79+137)
+import os
+
+print (dir(os))

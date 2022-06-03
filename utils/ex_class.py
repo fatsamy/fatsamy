@@ -15,6 +15,7 @@ class Exercise:
     description: str
     compound_movement: str
     target:str
+    bodyweight_ex:str
 
     def __str__(self):
         return 'ID_{:2} === {:25} === {}'.format(self.id,self.name,self.description)
@@ -49,7 +50,7 @@ def exerciseload(path):
         c.execute('''SELECT * FROM exercise''')
         tlp = c.fetchall()
     for i in tlp:
-        e = Exercise(id=i[0],name=i[1],description=i[2],compound_movement=i[3],target=i[4])
+        e = Exercise(id=i[0],name=i[1],description=i[2],compound_movement=i[3],target=i[4],bodyweight_ex=i[5])
         lst_all.append(e)
     return lst_all
     
@@ -58,25 +59,31 @@ def find_exercise(id: int, lst_all: list):
         if ex.id == id:
             return ex
     raise Exception (f'Exercise with this ID {id} not found')
+
+
 def find_exercise_id(name: str, lst_all: list):
     for ex in lst_all:
         if ex.name == name:
             return ex.id
     raise Exception (f'Exercise with name {name} not found')
 
-
+def is_bodyweight_ex(id: int, lst_all: list):
+    for ex in lst_all:
+        if ex.id == id:
+            return ex.bodyweight_ex
+    raise Exception (f'Exercise with ID {id} not found')
 
 if __name__== '__main__':
     #db_path = 'Diary_db.sqlite3' ### ----->>> HIER DATENBANKPFAD EINGEBEN
     db_path = 'Diary_dbcopy.sqlite3' ### ----->>> HIER DATENBANKPFAD EINGEBEN
 
     lst_all = exerciseload(db_path)
-    for i in lst_all:
-        print (i)
-    exercise_name = find_exercise(39,lst_all)
-    print (exercise_name)
-    exercise_id = find_exercise_id('racingbike_middle',lst_all)
-    print (exercise_id)
-
+    #or i in lst_all:
+    #   print (i)
+    #xercise_name = find_exercise(39,lst_all)
+    #rint (exercise_name)
+    #xercise_id = find_exercise_id('racingbike_middle',lst_all)
+    #print (exercise_id)#
+    print (is_bodyweight_ex(2,lst_all))
     
     #    ex_1 = Exercise(id='1',name='BenchPress',description='Flachbank mit Olympiastange',compound_movement='yes',target='chest')
