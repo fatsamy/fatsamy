@@ -11,9 +11,9 @@ ex_db_path = 'Diary_db.sqlite3' # DB für Übungen
 db_path = choose_db()
 
 #lst_exercise = (45,31,40,16,30,5) # --------Uebungen Wählen ------
-#lst_exercise = (46,30,14,32,20,33) # --------Uebungen Wählen ------
-lst_exercise = (13,47,3,26,4,27) # --------Uebungen Wählen ------
-
+lst_exercise = (46,30,14,32,20,33) # --------Uebungen Wählen ------
+#lst_exercise = (13,47,3,26,4,27) # --------Uebungen Wählen ------
+current_id = 1
 
 date,start_time,lt_start = get_date_and_time() 
 
@@ -45,7 +45,7 @@ CurrentWorkout = Workout(type=trainings_auswahl,
             time_start=start_time,
             )
 #CurrentWorkout.get_current_id(db_path)
-CurrentWorkout.id = 1
+CurrentWorkout.id = current_id
 CurrentWorkout.take_temp_fasted()
 CurrentWorkout.start_warmup()
 
