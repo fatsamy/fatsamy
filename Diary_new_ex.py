@@ -11,13 +11,13 @@ ex_db_path = 'Diary_db.sqlite3' # DB für Übungen
 db_path = choose_db()
 
 #lst_exercise = (45,31,40,16,30,5) # --------Uebungen Wählen ------
-lst_exercise = (46,30,14,32,20,33) # --------Uebungen Wählen ------
-#lst_exercise = (13,47,3,26,4,27) # --------Uebungen Wählen ------
-current_id = 1
+#lst_exercise = (46,30,14,32,20,33) # --------Uebungen Wählen ------
+lst_exercise = (13,47,3,26,4,27) # --------Uebungen Wählen ------
+current_id = 2
 
 date,start_time,lt_start = get_date_and_time() 
 
-last_id = 0
+last_id = 1
 # ********** TRAININGSAUSWAHL **********
 
 print ('\n =====>  Daten wurden aus {} geladen. <======'.format(db_path))
