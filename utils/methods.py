@@ -205,8 +205,15 @@ def show_endurance_low_middle(id,path):
                 WHERE workout_id = ?
                 ''',(id,))
         calories = c.fetchone()
+        # ---------- memo -------------#
+        c.execute(''' SELECT memo
+                FROM sets
+                WHERE workout_id = ?
+                ''',(id,))
+        memo = c.fetchone()
     print ('__{}_mins mit einem Druchschnittpuls von __{}_S/mins'.format(time_in_mins[0],puls[0]))
     print ('Das bei___ {}_Calorien___ Leistung'.format(calories[0]))
+    print (f'Hinweis: ____ {memo[0]}')
     # letztes Ausdauertraining anzeigen das "low" oder "middle" war
 
 
