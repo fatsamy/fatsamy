@@ -6,7 +6,7 @@
 from dataclasses import dataclass
 from types import ClassMethodDescriptorType
 from utils.methods import dbopen,i_float
-
+from utils.decorators import timer
 
 @dataclass(frozen=False)
 class Exercise:
@@ -19,7 +19,8 @@ class Exercise:
 
     def __str__(self):
         return 'ID_{:2} === {:25} === {}'.format(self.id,self.name,self.description)
-  
+    
+    @timer
     def take_set_lst(self):
         lst = []
         question_sets = 'n'
@@ -72,6 +73,16 @@ def is_bodyweight_ex(id: int, lst_all: list):
         if ex.id == id:
             return ex.bodyweight_ex
     raise Exception (f'Exercise with ID {id} not found')
+
+def get_last_id_new(ex_id,path):
+    with dbopen(path) as c:
+        c.execute('''SELECT workout_id
+                   FROM sets
+                   WHERE exercise_id = ?
+                   ORDER BY workout_id DESC
+                   ''',(ex_id,)) # letzte workout_id auslesen
+        last_id_tulpe = c.fetchone()
+    return last_id_tulpe[0]
 
 if __name__== '__main__':
     #db_path = 'Diary_db.sqlite3' ### ----->>> HIER DATENBANKPFAD EINGEBEN

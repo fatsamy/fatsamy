@@ -3,9 +3,9 @@
 # middle ist fertig und läuft!!!!
 # die anderen sind noch im alten Format kopiert. Könnten funktionieren
 # sollten aber umgeschrieben werden :)
+from cmath import e
 import os,zipfile
 from utils.sql_quere import max_volume, choose_db
-
 
 from utils.ex_class import * #exerciseload,find_exercise_id,take_set_list
 from utils.methods import *
@@ -146,7 +146,7 @@ else:
     CurrentWorkout.start_warmup()
     
     
-    for one_exercise in lst_exercise: #Name und Beschreibung anzeigen
+    for one_exercise in lst_exercise: 
         best_workout_id = 0
         print('')
         cur_ex = (lst_all[one_exercise-1])
