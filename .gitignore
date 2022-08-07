@@ -1,5 +1,6 @@
 *.sqlite3
 DB_Backup2/
 CommandGit.txt
+Charts/
 __pycache__/
 *el-HP-EliteBook*.py

@@ -61,6 +61,12 @@ def find_exercise(id: int, lst_all: list):
             return ex
     raise Exception (f'Exercise with this ID {id} not found')
 
+def find_exercise_name(id: int, lst_all: list):
+    for ex in lst_all:
+        if ex.id == id:
+            return ex.name
+    raise Exception (f'Exercise with this ID {id} not found')
+
 
 def find_exercise_id(name: str, lst_all: list):
     for ex in lst_all:

@@ -1,3 +1,5 @@
-import os
+from datetime import date
 
-print (dir(os))
+a = str(date.today())
+
+print (a)
