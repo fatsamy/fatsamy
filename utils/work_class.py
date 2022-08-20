@@ -1,8 +1,5 @@
 import time
-
-
 from dataclasses import dataclass
-
 from utils.methods import duration_time,i_float,dbopen
 
 
@@ -92,17 +89,17 @@ class Workout:
 @dataclass
 class EnduranceWorkout(Workout):
     def __str__(self):
-        return '''ID{:2} {} {}\n
+        return '''\nID{:2} {} {}\n
                 Temp:{}C\n
                 Fasted: {}h\n
                 Time: {}\n
-                Warmup: {}\n
-                Cooldown: {}\n
-                Puls: {}\n
-                ZeitGesamt: {}\n
-                ZeitAusdauereinheit: {}\n
-                Kalorien: {}\n
-                Distanz: {}\n
+                Warmup: {} mins\n
+                Cooldown: {} mins\n
+                Puls: {} S/mins\n
+                ZeitGesamt: {} in mins\n
+                ZeitAusdauereinheit: {} in mins\n
+                Kalorien: {} kcal \n
+                Distanz: {} km\n
                 WorkoutMemo: {}'''.format(
             self.id,
             self.type,
@@ -134,4 +131,34 @@ class EnduranceWorkout(Workout):
         d = i_float('Wieviel Km?: ___')
         self.distance = d
 
-    
+def show_endurance_low_middle(id,path):
+    with dbopen(path) as c:
+        c.execute('''SELECT * FROM sets
+                WHERE workout_id = ?
+                ''',(id,))
+        table_sets = c.fetchall()
+        c.execute('''SELECT * FROM workout_diary
+                WHERE workout_id = ?
+                ''',(id,))
+        table_workout = c.fetchall()
+    table_workout = table_workout[0]
+    table_sets = table_sets[0]
+    #print (table_workout)
+    #print (table_sets)
+    LastWorkout = EnduranceWorkout(
+                    type=table_workout[1],
+                    current_date=table_workout[2],
+                    time_start=table_workout[3],
+                    )
+    LastWorkout.id=table_workout[0]
+    LastWorkout.duration=table_workout[4]
+    LastWorkout.temperatur=table_workout[5]
+    LastWorkout.fasted_since=table_workout[6]
+    LastWorkout.avarage_puls=table_workout[7]
+    LastWorkout.warmup_mins=table_workout[8]
+    LastWorkout.cooldown_mins=table_workout[9]
+    LastWorkout.endumins=table_sets[5]
+    LastWorkout.cals=table_sets[8]
+    LastWorkout.distance=table_sets[9]
+    LastWorkout.workoutmemo=table_sets[10]
+    print (LastWorkout)

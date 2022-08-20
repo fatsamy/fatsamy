@@ -1,5 +1,5 @@
 import sqlite3,time
-
+#from utils.work_class import EnduranceWorkout
 
 
 class dbopen(object):
@@ -185,36 +185,38 @@ def ShowLastSets(id,exercise,path):
 def show_set(tlp):
     print(f'{tlp[0]}KG für {tlp[1]} Wiederholungen  --- Hinweis: {tlp[2]}')
 
-def show_endurance_low_middle(id,path):
-        # ----------- PULS-----------#
-    with dbopen(path) as c:
-        c.execute('''SELECT puls
-                From workout_diary
-                WHERE workout_id = ? 
-                ''',(id,))
-        puls = c.fetchone()
-        # ----------time_in_mins ----------#
-        c.execute(''' SELECT time_in_mins
-                FROM sets
-                WHERE workout_id = ?
-                ''',(id,))
-        time_in_mins = c.fetchone()
-        # ---------- calories -------------#
-        c.execute(''' SELECT calories
-                FROM sets
-                WHERE workout_id = ?
-                ''',(id,))
-        calories = c.fetchone()
-        # ---------- memo -------------#
-        c.execute(''' SELECT memo
-                FROM sets
-                WHERE workout_id = ?
-                ''',(id,))
-        memo = c.fetchone()
-    print ('__{}_mins mit einem Druchschnittpuls von __{}_S/mins'.format(time_in_mins[0],puls[0]))
-    print ('Das bei___ {}_Calorien___ Leistung'.format(calories[0]))
-    print (f'Hinweis: ____ {memo[0]}')
-    # letztes Ausdauertraining anzeigen das "low" oder "middle" war
+#def show_endurance_low_middle(id,path):
+ 
+
+#        # ----------- PULS-----------#
+#    with dbopen(path) as c:
+#        c.execute('''SELECT puls
+#                From workout_diary
+#                WHERE workout_id = ? 
+#                ''',(id,))
+#        puls = c.fetchone()
+#        # ----------time_in_mins ----------#
+#        c.execute(''' SELECT time_in_mins
+#                FROM sets
+#                WHERE workout_id = ?
+#                ''',(id,))
+#        time_in_mins = c.fetchone()
+#        # ---------- calories -------------#
+#        c.execute(''' SELECT calories
+#                FROM sets
+#                WHERE workout_id = ?
+#                ''',(id,))
+#        calories = c.fetchone()
+#        # ---------- memo -------------#
+#        c.execute(''' SELECT memo
+#                FROM sets
+#                WHERE workout_id = ?
+#                ''',(id,))
+#        memo = c.fetchone()
+#    print ('__{}_mins mit einem Druchschnittpuls von __{}_S/mins'.format(time_in_mins[0],puls[0]))
+#    print ('Das bei___ {}_Calorien___ Leistung'.format(calories[0]))
+#    print (f'Hinweis: ____ {memo[0]}')
+#    # letztes Ausdauertraining anzeigen das "low" oder "middle" war
 
 
 def show_endurance_high(id,path):

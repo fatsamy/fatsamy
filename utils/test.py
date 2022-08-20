@@ -1,5 +1,6 @@
-from datetime import date
+from methods import show_endurance_low_middle
 
-a = str(date.today())
+id = 117
+path = '../Diary_dbcopy.sqlite3'
 
-print (a)
+show_endurance_low_middle(id,path)
