@@ -3,8 +3,10 @@ from matplotlib import pyplot as plt
 from utils.methods import dbopen
 from utils.diagramm import single_plot,max_plot
 from utils.ex_class import exerciseload, is_bodyweight_ex,find_exercise_name
-
-
+import logging
+logging.disable(level=logging.CRITICAL)
+#logging.basicConfig(level=logging.DEBUG,
+#                    format='%(levelname)s - %(message)s')
 
 def exercise_chart(exercise = int ,path = str, lst_all = list):
     workout_id_lst = []
@@ -26,7 +28,7 @@ def exercise_chart(exercise = int ,path = str, lst_all = list):
                         FROM sets
                         WHERE workout_id = ? AND exercise_id = ?
                         ''',(work_id[0],exercise)):
-                    #print (set)
+                    print (set)
                     sum += (set[0]+bodyweight)*set[1]
             workout_id_lst.append(work_id)
             volume_lst.append(sum)
@@ -45,14 +47,14 @@ if __name__ == '__main__':
 
 
     lst_all = exerciseload(ex_db_path)
-    
-    all_for_plot = []
-    for ex in lst_all:
-        #if 'legs' in ex.target:
-        if ex.target != 'endurance':
-            all_for_plot.append(ex.id)
-    #print (all_for_plot)
-            
+#    
+    all_for_plot = [30]
+#    for ex in lst_all:
+#        #if 'legs' in ex.target:
+#        if ex.target != 'endurance':
+#            all_for_plot.append(ex.id)
+#    print (all_for_plot)
+#            
     for i in all_for_plot:
         workout_id_lst,volume_lst = exercise_chart(i,db_path,lst_all)
         max_plot('Workout_ID', 
@@ -60,6 +62,13 @@ if __name__ == '__main__':
                     'GesamtVolumen', 
                     volume_lst, 
                     find_exercise_name(i,lst_all))
-        #print(i)
-    
+        logging.debug(f'id = {i}')
+
+#    EXERCISE = 30
+#    workout_id_lst,volume_lst = exercise_chart(EXERCISE,db_path,lst_all)
+#    single_plot('Workout_ID', 
+#            workout_id_lst, 
+#            'GesamtVolumen', 
+#            volume_lst, 
+#            find_exercise_name(EXERCISE,lst_all))
     plt.show()

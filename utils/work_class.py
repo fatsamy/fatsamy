@@ -48,9 +48,9 @@ class Workout:
 
 
     def start_warmup(self):
-        print ('\n** WARMUP gestarte **')
+        print ('\n      ** WARMUP gestarte **')
         lt_warmup_start = time.localtime()
-        input ('** WARMUP beendet ?? **')    
+        input ('      ** WARMUP beendet ?? **')    
         lt_warmup_finish = time.localtime()
         self.warmup_mins = duration_time(lt_warmup_start,lt_warmup_finish)#
 

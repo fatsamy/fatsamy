@@ -1,5 +1,3 @@
-from os import lstat
-import sqlite3
 from utils.ex_class import is_bodyweight_ex
 from utils.methods import dbopen
 

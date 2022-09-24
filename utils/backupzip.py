@@ -4,7 +4,7 @@
 # Sollte man das noch automatisch starten lassen? 
 
 
-import os, zipfile,time
+import os, zipfile
 
 
 #print(os.getcwd()) # Show current working directory
